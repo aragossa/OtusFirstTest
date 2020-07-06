@@ -1,20 +1,17 @@
-import config.ServerConfig;
+import config.ConfigLoader;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.junit.Assert;
+import org.testng.annotations.*;
+import org.testng.Assert;
 
-public class SampleTest {
-
+public class SampleTestNG {
     protected static WebDriver driver;
-    private Logger logger = LogManager.getLogger(SampleTest.class);
-    private ServerConfig cfg = ConfigFactory.create(ServerConfig.class);
+    private Logger logger = LogManager.getLogger(SampleTestNG.class);
+    private ConfigLoader cfg = ConfigFactory.create(ConfigLoader.class);
 
     @Test
     public void Log() {
@@ -25,7 +22,7 @@ public class SampleTest {
         logger.trace("TRACE");
     }
 
-    @Before
+    @BeforeTest
     public void setUp() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
@@ -41,7 +38,7 @@ public class SampleTest {
         Assert.assertEquals("Онлайн‑курсы для профессионалов, дистанционное обучение современным профессиям", driver.getTitle());
     }
 
-    @After
+    @AfterTest
     public void setDown() {
         if (driver != null) {
             driver.quit();
