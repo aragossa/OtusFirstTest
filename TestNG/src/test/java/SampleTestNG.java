@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
+import org.testng.Assert;
 
 public class SampleTestNG {
     protected static WebDriver driver;
@@ -34,8 +35,7 @@ public class SampleTestNG {
         logger.info("Открыта страница отус");
         driver.manage().window().maximize();
         logger.info("Развернуто на полный экран");
-        String pageTitle = driver.getTitle();
-        logger.info(pageTitle);
+        Assert.assertEquals("Онлайн‑курсы для профессионалов, дистанционное обучение современным профессиям", driver.getTitle());
     }
 
     @AfterTest
@@ -44,8 +44,4 @@ public class SampleTestNG {
             driver.quit();
         }
     }
-
-
-
-
 }
